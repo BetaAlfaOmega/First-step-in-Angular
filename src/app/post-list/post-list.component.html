@@ -1,0 +1,10 @@
+<div class="div">
+  <input type="text" [(ngModel)]="title" placeholder="Titre" />
+  <input type="text" [(ngModel)]="content" placeholder="Contenue" />
+  <h4>{{ title }}</h4>
+  <p>fait le {{ createdAt | date }}</p>
+  <p>{{ content }}</p>
+  <p>{{ love }}</p>
+  <button class="btn btn-success" (click)="onLove()">Love It</button>
+  <button class="btn btn-danger" (click)="onHate()">Hate It</button>
+</div>
