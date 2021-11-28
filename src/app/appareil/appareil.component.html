@@ -12,6 +12,7 @@
   <h4 [ngStyle]="{ color: getColor() }">
     appareil: {{ appareilName }} - Status : {{ getStatus() }}
   </h4>
+  <a [routerLink]="[id]"> Détail</a>
   <input type="text" class="form-control" [(ngModel)]="appareilName" />
 
   <button

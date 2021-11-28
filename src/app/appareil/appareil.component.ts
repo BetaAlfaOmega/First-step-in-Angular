@@ -10,6 +10,8 @@ export class AppareilComponent implements OnInit {
   @Input() appareilName: string = ''; //création d'un propriété appareilName qu'on peut fixé à la balise <app-appareil>
   @Input() appareilStatus: string = '';
   @Input() indexOfAppareil: number = 0;
+  @Input() id: number = 0;
+
   constructor(private appareilService: AppareilService) {}
 
   ngOnInit(): void {}

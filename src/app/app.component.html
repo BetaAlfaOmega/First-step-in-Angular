@@ -1,57 +1,19 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLinkActive="active" routerLink="/auth">Authentification</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="/appareils">Appareils</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h2>Mes appareils</h2>
-      <p>Mis à jour: {{ lastUpdate | date: "EEEE d MMMM y" | uppercase }}</p>
-      <p>{{ promise | async }}</p>
-      <!-- |async : dis à angular que l'objet  qui est là est, soit un observable soit un promise et que les données vont arrivées, il faut juste être patient et faire confiance -->
-
-      <ul class="list-group">
-        <p>test</p>
-        <!-- <app-appareil
-          [appareilName]="appareilOne"
-          [appareilStatus]="'éteint'"
-        ></app-appareil> -->
-
-        <p style="margin-top: 100px">not a test lol</p>
-        <app-appareil
-          *ngFor="let appareil of appareils; let i = index"
-          [indexOfAppareil]="i"
-          [appareilName]="appareil.name"
-          [appareilStatus]="appareil.status"
-        ></app-appareil>
-      </ul>
-      <button
-        class="btn btn-success"
-        [disabled]="!isAuth"
-        (click)="onAllumer()"
-      >
-        Tout allumer
-      </button>
-      <button
-        class="btn btn-danger"
-        [disabled]="!isAuth"
-        (click)="onEtteindre()"
-      >
-        Tout éteindre
-      </button>
-    </div>
-  </div>
-  <div class="row">
-    <h1>EXERCICE</h1>
-    <p>je ne comprends pas bien le sujet</p>
-    <!-- 
-    <input type="text" [(ngModel)]="titles" placeholder="Titre" />
-    <input type="text" [(ngModel)]="contents" placeholder="Contenue" />
-    <button class="btn btn-success" (click)="onPublier()">Publier</button> -->
-
-    <!-- EXERCICE -->
-    <!-- <app-post-list
-      *ngFor="let post of posts"
-      [title]="post.title"
-      [content]="post.content"
-      [loveIts]="post.loveIts"
-      [createdAt]="post.createdAt"
-    ></app-post-list> -->
+    <!-- ROUTING: intégrer  -->
+    <router-outlet></router-outlet>
   </div>
 </div>
