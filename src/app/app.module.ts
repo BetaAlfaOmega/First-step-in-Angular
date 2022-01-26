@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // SERICES: importer les services
 import { AppareilService } from './services/appareil.service';
 // ROUTING: importer Routes et RouterModule
@@ -18,6 +18,8 @@ import { SingleAppareilComponent } from './single-appareil/single-appareil.compo
 import { FourOhForComponent } from './four-oh-for/four-oh-for.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserService } from './services/user.service';
 
 //ROUTING: indispensable pour créer des routes
 const appRoutes: Routes = [
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
   }, //:id est exploitable
   { path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'users', component: UserListComponent },
   { path: 'not-found', component: FourOhForComponent },
   { path: '**', redirectTo: '/not-found' }, //à mettre à la fin. izay midika oe ze path ankotrn ireo voatanisa reo d redirigena any amn "/not-found"
 ];
@@ -49,11 +52,14 @@ const appRoutes: Routes = [
     SingleAppareilComponent,
     FourOhForComponent,
     EditAppareilComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    //formulaire
+    ReactiveFormsModule,
     //ROUTING: pour dire que la racine de toutes le routes se trouve dans appRoutes
     RouterModule.forRoot(appRoutes),
   ],
@@ -62,6 +68,7 @@ const appRoutes: Routes = [
     AppareilService,
     AuthService,
     AuthGuard,
+    UserService,
   ],
   bootstrap: [AppComponent],
 })
