@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppareilService } from '../services/appareil.service';
 
 @Component({
@@ -21,6 +22,9 @@ export class AppareilViewComponent implements OnInit {
   //SERVICES: créer un tableau pour acceuillir les données
   appareils: any[] = [];
 
+  //SUbscription:
+  appareilSubscription: Subscription = new Subscription();
+
   //constructor: executé au moment de la création du component
   constructor(
     // SERVICES: creer une variable de type appareilService
@@ -36,7 +40,12 @@ export class AppareilViewComponent implements OnInit {
   //exécuté au moment de la création du component APRES le constructor
   // (c'est logique)
   ngOnInit() {
-    this.appareils = this.appareilService.appareils;
+    this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+      (appareils: any[]) => {
+        this.appareils = appareils;
+      }
+    );
+    this.appareilService.emitAppareilSubject();
   }
 
   onAllumer() {

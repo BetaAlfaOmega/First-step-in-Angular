@@ -2,12 +2,18 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li>
-        <a routerLinkActive="active" routerLink="/auth">Authentification</a>
+        <a routerLinkActive="active" routerLink="auth">Authentification</a>
       </li>
       <li>
-        <a routerLinkActive="active" routerLink="/appareils">Appareils</a>
+        <a routerLinkActive="active" routerLink="appareils">Appareils</a>
+      </li>
+      <li>
+        <a routerLinkActive="active" routerLink="edit">Nouvel Appareil</a>
       </li>
     </ul>
+    <div class="navbar-right">
+      Vous êtes connecté depuis {{ secondes }} secondes
+    </div>
   </div>
 </nav>
 

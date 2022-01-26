@@ -15,13 +15,27 @@ import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
 import { AuthService } from './services/auth.service';
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhForComponent } from './four-oh-for/four-oh-for.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 
 //ROUTING: indispensable pour créer des routes
 const appRoutes: Routes = [
-  { path: 'appareils', component: AppareilViewComponent },
+  { path: '', component: AuthComponent },
+  {
+    path: 'appareils',
+    canActivate: [AuthGuard],
+    component: AppareilViewComponent,
+  },
+  {
+    path: 'appareils/:id',
+    canActivate: [AuthGuard],
+    component: SingleAppareilComponent,
+  }, //:id est exploitable
+  { path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent },
   { path: 'auth', component: AuthComponent },
-  { path: '', component: AppareilViewComponent },
-  { path: 'appareils/:id', component: SingleAppareilComponent }, //:id est exploitable
+  { path: 'not-found', component: FourOhForComponent },
+  { path: '**', redirectTo: '/not-found' }, //à mettre à la fin. izay midika oe ze path ankotrn ireo voatanisa reo d redirigena any amn "/not-found"
 ];
 
 @NgModule({
@@ -33,6 +47,8 @@ const appRoutes: Routes = [
     AuthComponent,
     AppareilViewComponent,
     SingleAppareilComponent,
+    FourOhForComponent,
+    EditAppareilComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +61,7 @@ const appRoutes: Routes = [
     //tous les services, afaka ampiasan component reetra sy ny services reetra
     AppareilService,
     AuthService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <!-- FORMULAIRE: METHODE TEMPLATE -->
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <!-- #f: une référence locale qui permet à angular de faire référence à un élement du dom depuis le dom 
+    ngForm: pour dire qu'on fait référence à un objet de type ngForm-->
+      <div class="form-group">
+        <label for="name">Nom de l'appareil</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          name="name"
+          ngModel
+          required
+        />
+        <!-- ajouter un propriété name -->
+        <!-- ngModel pour enregistrer ce controle de formulaire au près d'angular -->
+        <!-- required : validation : pour dire que ce champs doit être rempli -->
+      </div>
+      <div class="form-group">
+        <label for="status">Etat de l'appareil</label>
+        <select
+          class="form-control"
+          name="status"
+          id="status"
+          [ngModel]="defaultOnOff"
+        >
+          <!-- DefaultOnOff: valeur par défaut qu'on affichera sur le select  -->
+          <option value="allumé">Allumé</option>
+          <option value="éteint">Eteint</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="f.invalid">
+        Enregistrer
+      </button>
+      <!-- disabled: ne peut être cliqué si une des validations du formulaire n'est pas respecter. lol ts haiko rah mba miteny ihany zao phrase zao -->
+    </form>
+  </div>
+</div>
