@@ -20,6 +20,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './services/user.service';
+import { NewUserComponent } from './new-user/new-user.component';
 
 //ROUTING: indispensable pour créer des routes
 const appRoutes: Routes = [
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'edit', canActivate: [AuthGuard], component: EditAppareilComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'users', component: UserListComponent },
+  { path: 'new-user', component: NewUserComponent },
   { path: 'not-found', component: FourOhForComponent },
   { path: '**', redirectTo: '/not-found' }, //à mettre à la fin. izay midika oe ze path ankotrn ireo voatanisa reo d redirigena any amn "/not-found"
 ];
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     FourOhForComponent,
     EditAppareilComponent,
     UserListComponent,
+    NewUserComponent,
   ],
   imports: [
     BrowserModule,

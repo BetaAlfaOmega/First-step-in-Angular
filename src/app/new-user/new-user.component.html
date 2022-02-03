@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <!-- FORMULAIRE: METHODE REACTIVE-->
+    <form (ngSubmit)="onSubmitForm()" [formGroup]="userForm">
+      <!-- formGroup: pour dire que le formGroup correspondant à ce formulaire  c'est userForm-->
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          formControlName="firstName"
+        />
+        <!-- formControlName doit correspondre aux noms du formControle qu'on a créé dans le .ts -->
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nom</label>
+        <input
+          type="text"
+          id="lastName"
+          class="form-control"
+          formControlName="lastName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Adresse mail</label>
+        <input
+          type="text"
+          id="email"
+          class="form-control"
+          formControlName="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="drinkPreference">Quel Boisson préférez-vous?</label>
+        <select
+          id="drinkPreference"
+          class="form-control"
+          formControlName="drinkPreference"
+        >
+          <option value="Coca">Coca</option>
+          <option value="Pepsi">Pepsi</option>
+        </select>
+      </div>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="userForm.invalid"
+      >
+        Soumettre
+      </button>
+    </form>
+  </div>
+</div>

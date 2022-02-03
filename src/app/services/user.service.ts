@@ -12,6 +12,7 @@ export class UserService {
     },
   ];
   userSubject = new Subject<User[]>(); //emmet un tableau de user
+  counterSubject = new Subject<number>(); //emmet un tableau de user
 
   emitUsers() {
     this.userSubject.next(this.users.slice());
@@ -20,5 +21,11 @@ export class UserService {
   addUser(user: User) {
     this.users.push(user);
     this.emitUsers();
+  }
+
+  count() {
+    setInterval(() => {
+      this.counterSubject.next(1);
+    }, 1000);
   }
 }

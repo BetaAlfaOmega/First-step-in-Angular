@@ -6,6 +6,7 @@ import { AppareilService } from './services/appareil.service';
 import { Observable, Subscription } from 'rxjs';
 import 'rxjs/Rx';
 import { LOCATION_INITIALIZED } from '@angular/common';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +19,20 @@ export class AppComponent implements OnInit, OnDestroy {
   secondes: number = 0;
   counterSubscription: Subscription = new Subscription();
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    const counter = Observable.interval(1000); //crée un observable qui emetra un chiffre toutes les secondes
+    this.counterSubscription = this.userService.counterSubject.subscribe(
+      (sec) => {
+        this.secondes += sec;
+        console.log(this.secondes);
+      }
+    );
+    this.userService.count();
+    // const counter = Observable.interval(1000); //crée un observable qui emetra un chiffre toutes les secondes
     // counter.subscribe(
     //   //.subscribe: métode qui permet de souscrire une observable, d'observer une observable et de réagir à ses changements
-
+    // counter.subscribe((data) => console.log(data));
     //   // les arguments
     //   //1. celui qui recoit les données
     //   (value: number) => {
@@ -40,9 +48,11 @@ export class AppComponent implements OnInit, OnDestroy {
     //   }
     // );
 
-    this.counterSubscription = counter.subscribe((value: number) => {
-      this.secondes = value;
-    });
+    // this.counterSubscription = counter.subscribe((value: number) => {
+    //   console.log(value);
+
+    //   this.secondes = value;
+    // });
     // console.log(this.secondes); tsy mety ty eto ty
   }
 
