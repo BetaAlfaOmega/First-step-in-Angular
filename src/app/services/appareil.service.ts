@@ -1,5 +1,8 @@
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AppareilService {
   appareilSubject = new Subject<any[]>(); //cree un subject
 
@@ -12,6 +15,8 @@ export class AppareilService {
     { id: 1, name: 'Ordinateur', status: 'allumé' },
     { id: 2, name: 'Télévision', status: 'éteint' },
   ];
+
+  constructor(private httpClient: HttpClient) {}
 
   //methode qui fait en sorte que le subject emette la liste des appareils et y acceder depuis l'extérieur.
   emitAppareilSubject() {
@@ -69,5 +74,39 @@ export class AppareilService {
 
     this.appareils.push(AppareilObject);
     this.emitAppareilSubject();
+  }
+
+  //enregistrer les appareils sur le serveur
+  saveAppareilsToServer() {
+    this.httpClient
+      .put(
+        'https://http-client-demo-c522a-default-rtdb.firebaseio.com/appareils.json', //path auquel on souhaite enregister les appareils.
+        this.appareils
+      )
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé');
+        },
+        (error) => {
+          console.log('erreur de sauvegarde' + error);
+        }
+      );
+  }
+
+  //récupérer la liste des appareils qu'on a enregistré sur le seveur
+  getAppareilsFromServer() {
+    this.httpClient
+      .get<any[]>( //response est de type object donc il faut le caster en any[]
+        'https://http-client-demo-c522a-default-rtdb.firebaseio.com/appareils.json'
+      )
+      .subscribe(
+        (response) => {
+          this.appareils = response;
+          this.emitAppareilSubject(); //une fois les appareils récupérer, il faut emettre le subject parce que sinon on ne verra pas le changement
+        },
+        (error) => {
+          console.log('erreur' + error);
+        }
+      );
   }
 }

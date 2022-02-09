@@ -22,12 +22,12 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.counterSubscription = this.userService.counterSubject.subscribe(
-      (sec) => {
-        this.secondes += sec;
-        console.log(this.secondes);
-      }
-    );
+    // this.counterSubscription = this.userService.counterSubject.subscribe(
+    // (sec) => {
+    // this.secondes += sec;
+    // console.log(this.secondes);
+    //   }
+    // );
     this.userService.count();
     // const counter = Observable.interval(1000); //crée un observable qui emetra un chiffre toutes les secondes
     // counter.subscribe(

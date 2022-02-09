@@ -37,7 +37,7 @@ export class NewUserComponent implements OnInit {
   onSubmitForm() {
     const formValue = this.userForm.value; //on a ici tous les valeurs du control
     const newUser = new User(
-      formValue['firstname'], //pour récupérer les différents éléments
+      formValue['firstName'], //pour récupérer les différents éléments
       formValue['lastName'],
       formValue['email'],
       formValue['drinkPreference'],

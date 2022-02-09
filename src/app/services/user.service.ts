@@ -23,6 +23,7 @@ export class UserService {
     this.emitUsers();
   }
 
+  //exemple toky
   count() {
     setInterval(() => {
       this.counterSubject.next(1);

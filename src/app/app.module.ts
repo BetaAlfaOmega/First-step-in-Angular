@@ -21,6 +21,7 @@ import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './services/user.service';
 import { NewUserComponent } from './new-user/new-user.component';
+import { HttpClientModule } from '@angular/common/http'; //communication avec serveur
 
 //ROUTING: indispensable pour créer des routes
 const appRoutes: Routes = [
@@ -65,6 +66,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     //ROUTING: pour dire que la racine de toutes le routes se trouve dans appRoutes
     RouterModule.forRoot(appRoutes),
+    //interaction avec serveur
+    HttpClientModule,
   ],
   providers: [
     //tous les services, afaka ampiasan component reetra sy ny services reetra
