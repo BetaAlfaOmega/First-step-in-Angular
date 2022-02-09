@@ -50,7 +50,7 @@ export class AppareilService {
     this.emitAppareilSubject();
   }
 
-  // étteindre un seul
+  // éteindre un seul
   switchOffOne(index: number) {
     this.appareils[index].status = 'éteint';
     this.emitAppareilSubject();

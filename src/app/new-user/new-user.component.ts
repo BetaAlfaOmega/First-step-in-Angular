@@ -55,7 +55,7 @@ export class NewUserComponent implements OnInit {
 
   //ajouter un control: ajouter un hobby
   onAddHobby() {
-    const newHobbyControl = this.FormBuilder.control('', Validators.required);
+    const newHobbyControl = this.FormBuilder.control('', Validators.required); //à partir du moment que vous avez creez un hobby le champs devient requis
     this.getHobbies().push(newHobbyControl);
   }
 }

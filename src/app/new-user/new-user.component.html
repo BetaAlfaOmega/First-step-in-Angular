@@ -42,6 +42,18 @@
           <option value="Pepsi">Pepsi</option>
         </select>
       </div>
+      <div formArrayName="hobbies">
+        <h3>Vos hobbies</h3>
+        <div
+          class="form-group"
+          *ngFor="let hobbyControl of getHobbies().controls; let i = index"
+        >
+          <input type="text" class="form-control" [formControlName]="i" />
+        </div>
+        <button class="btn btn-success" type="button" (click)="onAddHobby()">
+          Ajouter un hobby
+        </button>
+      </div>
 
       <button
         class="btn btn-primary"
